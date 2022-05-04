@@ -1,8 +1,9 @@
+import Widget from "./components/Widget"
 
 function App() {
   return (
     <>
-    <button className="">Hello World</button>
+    <Widget />
     </>
   )
 }
