@@ -5,6 +5,7 @@ import ideaImageUrl from '../../assets/idea.svg'
 import thoughtImageUrl from '../../assets/thought.svg'
 import FeedbackTypeStep from './steps/FeedbackTypeStep';
 import FeedbackContentStep from './steps/FeedbackContentStep';
+import FeedbackSucessStep from './steps/FeedbackSucessStep';
 
 export const feedbackTypes = {
     BUG: {
@@ -35,25 +36,34 @@ export type feedbackType = keyof typeof feedbackTypes;
 const WidgetForm = () => {
 
     const [feedbackType, setFeedbackType] = useState<feedbackType | null>(null);
+    const [feedbackSent, setFeedbackSent] = useState(false);
 
     function handleRestartFeedback() {
+        setFeedbackSent(false);
         setFeedbackType(null);
     }
-  return (
-      <div className='bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto'>
-          {!feedbackType ? (
-              <FeedbackTypeStep onFeedbackTypeChanged={ setFeedbackType }/>
-          ) : (
-              <FeedbackContentStep
-              feedbackType={ feedbackType }
-              onFeedbackRestart={ handleRestartFeedback }
-              />
-          )}
-          <footer className='text-xs text-neutral-400'>
-            Feito por  <a className='underline' href='https://www.linkedin.com/in/ricardoanjosn/'>Code Rick</a>
-          </footer>
-      </div>
-  );
+    return (
+        <div className='bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto'>
+            {feedbackSent ? (
+                <FeedbackSucessStep onFeedbackRestart={handleRestartFeedback} />
+            ) : (
+                <>
+                    {!feedbackType ? (
+                        <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
+                    ) : (
+                        <FeedbackContentStep
+                            feedbackType={feedbackType}
+                            onFeedbackRestart={handleRestartFeedback}
+                            onFeedbackSent={() => setFeedbackSent(true)}
+                        />
+                    )}
+                </>
+            )}
+            <footer className='text-xs text-neutral-400'>
+                Feito por  <a className='underline' href='https://www.linkedin.com/in/ricardoanjosn/'>Code Rick</a>
+            </footer>
+        </div>
+    );
 }
 
 export default WidgetForm;
