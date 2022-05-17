@@ -4,38 +4,47 @@ import { ChatTeardropDots } from 'phosphor-react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
+import { Opitions } from '../Opitions';
+import { Form } from '../Form';
+
 import { styles } from './styles';
 import { theme } from '../../theme';
+import { feedbackTypes } from '../../utils/feedbackTypes';
+export type FeedbackType = keyof typeof feedbackTypes;
 
 function Widget() {
-    const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
-    function hendleOPen() {
-        bottomSheetRef.current?.expand();
-    }
+
+  function hendleOPen() {
+    bottomSheetRef.current?.expand();
+  }
   return (
-      <>
+    <>
       <TouchableOpacity
-      style={
-        styles.button
-      }
-      onPress={hendleOPen}
+        style={
+          styles.button
+        }
+        onPress={hendleOPen}
       >
-          <ChatTeardropDots 
+        <ChatTeardropDots
           size={34}
           weight="bold"
           color={theme.colors.text_on_brand_color}
-          />
+        />
       </TouchableOpacity>
-        <BottomSheet
+      <BottomSheet
         ref={bottomSheetRef}
         snapPoints={[1, 300]}
         backgroundStyle={styles.modal}
-        handleIndicatorStyle={styles.idicator}
-        >
-
-        </BottomSheet>
-      </>
+        handleIndicatorStyle={styles.indicator}
+      >
+        {/* <Opitions /> */}
+        <Form
+          feedbackType='BUG'
+        />
+      </BottomSheet>
+    </>
   );
 }
 
