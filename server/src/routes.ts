@@ -5,7 +5,7 @@ import { NodemailerMailAdapter } from "./adapters/nodemailer/nodemailer-mail-ada
 export const routes = Router();
 
 routes.post("/feedbacks", async (req, res) => {
-  const { type, screenshot, comment } = req.body;
+  const { type, comment, screenshot } = req.body;
 
   const prismaFeedbacksRepository = new PrismaFeedbacksRepository();
   const nodemailerMailAdapter = new NodemailerMailAdapter();
@@ -14,7 +14,7 @@ routes.post("/feedbacks", async (req, res) => {
     nodemailerMailAdapter
   );
 
-  await submitFeedbackUseCase.execute({ type, screenshot, comment });
+  await submitFeedbackUseCase.execute({ type, comment, screenshot });
 
   res.status(201).send();
 });
