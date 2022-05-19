@@ -20,32 +20,32 @@ interface Props {
 
 export function Form({ feedbackType }: Props) {
     const feedbackTypeInfo = feedbackTypes[feedbackType];
-  return (
-    <View style={styles.container}>
-        <View
-        style={styles.header}
-        >
-            <TouchableOpacity>
-                <ArrowLeft 
-                size={24}
-                weight={'bold'}
-                color={ theme.colors.text_secondary}
+    return (
+        <View style={styles.container}>
+            <View
+                style={styles.header}
+            >
+                <TouchableOpacity>
+                    <ArrowLeft
+                        size={24}
+                        weight={'bold'}
+                        color={theme.colors.text_secondary}
+                    />
+                </TouchableOpacity>
+                <Image
+                    source={feedbackTypeInfo.image}
+                    style={styles.image}
                 />
-            </TouchableOpacity>
-            <Image 
-            source={feedbackTypeInfo.image}
-            style={styles.image}
-            />
-            <View style={styles.titleContainer}>
-                <Text style={styles.titleText}>{feedbackTypeInfo.title}</Text>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{feedbackTypeInfo.title}</Text>
+                </View>
             </View>
+            <TextInput
+                multiline
+                style={styles.textInput}
+                placeholder={'Algo não esta funcionando? Deixe seu feedback'}
+                placeholderTextColor={theme.colors.text_secondary}
+            />
         </View>
-        <TextInput 
-        multiline
-        style={styles.textInput}
-        placeholder={'Algo não esta funcionando? Deixe seu feedback'}
-        placeholderTextColor={theme.colors.text_secondary}
-        />
-    </View>
-  );
+    );
 }
