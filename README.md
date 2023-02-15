@@ -1,3 +1,23 @@
-### feedback-page-nlw
 
-### Feito baseado nas aulas do NLW da Rocketseat
+## Description
+
+### Aplicação para criação de feedbacks. 
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
